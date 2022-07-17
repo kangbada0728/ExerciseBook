@@ -1,8 +1,6 @@
 package modernJavaInAction.part3_6_2;
 
 import modernJavaInAction.quiz2_1.Apple;
-import org.assertj.core.api.Assertions;
-import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
