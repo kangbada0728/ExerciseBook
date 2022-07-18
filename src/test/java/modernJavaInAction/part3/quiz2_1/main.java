@@ -1,4 +1,4 @@
-package modernJavaInAction.quiz2_1;
+package modernJavaInAction.part3.quiz2_1;
 
 import java.util.ArrayList;
 import java.util.List;

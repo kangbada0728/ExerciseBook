@@ -1,4 +1,4 @@
-package modernJavaInAction.part3_8;
+package modernJavaInAction.part3.part3_8;
 
 public class Letter {
     public static String addHeader(String text) {

@@ -1,6 +1,6 @@
-package modernJavaInAction.part3_6_2;
+package modernJavaInAction.part3.part3_6_2;
 
-import modernJavaInAction.quiz2_1.Apple;
+import modernJavaInAction.part3.quiz2_1.Apple;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

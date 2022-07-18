@@ -1,10 +1,9 @@
-package modernJavaInAction.part3_8;
+package modernJavaInAction.part3.part3_8;
 
-import modernJavaInAction.quiz2_1.Apple;
+import modernJavaInAction.part3.quiz2_1.Apple;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
