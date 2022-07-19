@@ -49,6 +49,14 @@ public class Main {
                 .forEach(System.out::println);
     }
 
+    @Test
+    void test2() {
+        menu.stream()
+                .filter(dish -> dish.getCalories() > 300)
+                .skip(2)
+                .forEach(System.out::println);
+    }
+
 
 
 
