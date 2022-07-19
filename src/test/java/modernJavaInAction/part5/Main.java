@@ -63,8 +63,20 @@ public class Main {
                 .filter(dish -> !dish.isVegetarian())
                 .limit(2)
                 .forEach(System.out::println);
-
     }
+
+    @Test
+    void test4() {
+        menu.stream()
+                .map(Dish::getName)
+                .forEach(System.out::println);
+
+        menu.stream()
+                .map(Dish::getName)
+                .map(String::length)
+                .forEach(System.out::println);
+    }
+
 
 
 
