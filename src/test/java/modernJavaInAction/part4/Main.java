@@ -56,7 +56,13 @@ public class Main {
         System.out.println("highCaloricDishes2 = " + highCaloricDishes2);
     }
 
-
-
+    @Test
+    void test3() {
+        List<Integer> numbers = Arrays.asList(1, 2, 1, 3, 3, 2, 4);
+        numbers.stream()
+                .filter(i -> i % 2 == 0)
+                .distinct()
+                .forEach(System.out::println);
+    }
 
 }
