@@ -42,6 +42,11 @@ public class Main {
         specialMenu.stream()
                 .dropWhile(dish -> dish.getCalories() < 320)
                 .forEach(System.out::println);
+
+        specialMenu.stream()
+                .filter(dish -> dish.getCalories() > 300)
+                .limit(3)
+                .forEach(System.out::println);
     }
 
 
