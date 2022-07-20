@@ -143,6 +143,15 @@ public class Main {
                 .findFirst();
     }
 
+    @Test
+    void test8() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+        int sum = numbers.stream().reduce(0, (a, b) -> a + b);
+        int sum2 = numbers.stream().reduce(0, Integer::sum);
+        int mul = numbers.stream().reduce(1, (a, b) -> a * b);
+        Optional<Integer> reduce = numbers.stream().reduce(Integer::sum);
+    }
+
 
 
 }
