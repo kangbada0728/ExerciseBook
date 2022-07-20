@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 public class Main {
@@ -108,7 +109,7 @@ public class Main {
         System.out.println();
         n1.stream()
                 .flatMap(i -> n2.stream().map(j -> new int[]{i, j}))
-                .filter(arr -> (arr[0]+arr[1])%3==0)
+                .filter(arr -> (arr[0] + arr[1]) % 3 == 0)
                 .forEach(n -> System.out.println(n[0] + " " + n[1]));
     }
 
@@ -125,6 +126,22 @@ public class Main {
         }
     }
 
+    @Test
+    void test7() {
+        Optional<Dish> any = menu.stream()
+                .filter(Dish::isVegetarian)
+                .findAny();
+        menu.stream()
+                .filter(Dish::isVegetarian)
+                .findAny()
+                .ifPresent(dish -> System.out.println("dish = " + dish));
+
+        List<Integer> nums = Arrays.asList(1, 2, 3, 4, 5);
+        Optional<Integer> first = nums.stream()
+                .map(n -> n * n)
+                .filter(n -> n % 3 == 0)
+                .findFirst();
+    }
 
 
 
