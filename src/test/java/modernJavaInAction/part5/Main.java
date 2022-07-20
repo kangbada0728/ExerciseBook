@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Main {
 
@@ -77,7 +77,40 @@ public class Main {
                 .forEach(System.out::println);
     }
 
+    @Test
+    void test5() {
+        String[] arrayOfWords = {"Goodbye", "World"};
+        Stream<String> streamOfwords = Arrays.stream(arrayOfWords);
 
+        List<String> words = Arrays.asList("Modern", "Java", "In", "Action");
+        words.stream()
+                .map(word -> word.split(""))
+                .map(Arrays::stream)
+                .distinct()
+                .forEach(System.out::println);
+
+        words.stream()
+                .map(word -> word.split(""))
+                .flatMap(Arrays::stream)
+                .distinct()
+                .forEach(System.out::println);
+
+        List<Integer> nums = Arrays.asList(1, 2, 3, 4, 5);
+        nums.stream()
+                .map(n -> n * n)
+                .forEach(System.out::println);
+
+        List<Integer> n1 = Arrays.asList(1, 2, 3);
+        List<Integer> n2 = Arrays.asList(3, 4);
+        n1.stream()
+                .flatMap(i -> n2.stream().map(j -> new int[]{i, j}))
+                .forEach(n -> System.out.println(n[0] + " " + n[1]));
+        System.out.println();
+        n1.stream()
+                .flatMap(i -> n2.stream().map(j -> new int[]{i, j}))
+                .filter(arr -> (arr[0]+arr[1])%3==0)
+                .forEach(n -> System.out.println(n[0] + " " + n[1]));
+    }
 
 
 
