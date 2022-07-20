@@ -112,6 +112,19 @@ public class Main {
                 .forEach(n -> System.out.println(n[0] + " " + n[1]));
     }
 
+    @Test
+    void test6() {
+        if (menu.stream().anyMatch(Dish::isVegetarian)) {
+            System.out.println("The menu is (somewhat) vegetarian friendly!!");
+        }
+        if (menu.stream().allMatch(dish -> dish.getCalories() < 1000)) {
+            System.out.println("The menu is (somewhat) vegetarian friendly!!");
+        }
+        if (menu.stream().noneMatch(dish -> dish.getCalories() >= 1000)) {
+            System.out.println("The menu is (somewhat) vegetarian friendly!!");
+        }
+    }
+
 
 
 
