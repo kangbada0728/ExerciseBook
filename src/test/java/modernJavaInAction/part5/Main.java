@@ -152,6 +152,19 @@ public class Main {
         Optional<Integer> reduce = numbers.stream().reduce(Integer::sum);
     }
 
+    @Test
+    void test9() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+        numbers.stream().reduce(Integer::max);
+        numbers.stream().reduce(Integer::min);
+
+        int reduce = menu.stream()
+                .map(dish -> 1)
+                .reduce(0, (a, b) -> a + b);
+        long count = menu.stream().count();
+
+
+    }
 
 
 }
