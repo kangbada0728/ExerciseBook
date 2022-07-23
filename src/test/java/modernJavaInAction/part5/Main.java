@@ -3,11 +3,9 @@ package modernJavaInAction.part5;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static java.util.Comparator.comparing;
@@ -218,6 +216,49 @@ public class Main {
                 .reduce(Integer::max);
 
     }
+
+    @Test
+    void test11() {
+        int sum = menu.stream()
+                .mapToInt(Dish::getCalories)
+                .sum();
+
+        IntStream intStream = menu.stream().mapToInt(Dish::getCalories);
+        Stream<Integer> boxed = intStream.boxed();
+
+        OptionalInt max = menu.stream()
+                .mapToInt(Dish::getCalories)
+                .max();
+        int i = max.orElse(1);
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
