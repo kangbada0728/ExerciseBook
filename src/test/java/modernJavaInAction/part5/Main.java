@@ -230,10 +230,20 @@ public class Main {
                 .mapToInt(Dish::getCalories)
                 .max();
         int i = max.orElse(1);
+    }
 
+    @Test
+    void test12() {
+        IntStream evenNumbers = IntStream.rangeClosed(1, 100).filter(n -> n % 2 == 0);
+        System.out.println(evenNumbers.count());
 
+        IntStream intStream = IntStream.rangeClosed(1, 100);
+//        System.out.println(intStream.count());
+        intStream.forEach(System.out::println);
 
     }
+
+
 
 
 
