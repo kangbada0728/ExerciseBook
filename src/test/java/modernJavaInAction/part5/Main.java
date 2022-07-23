@@ -272,6 +272,9 @@ public class Main {
         Stream<String> homeValueStream1 = Stream.ofNullable(System.getProperty("home"));
         Stream<String> values = Stream.of("config", "home", "user")
                 .flatMap(key -> Stream.ofNullable(System.getProperty(key)));
+
+        int[] numbers = {2, 3, 5, 7, 11, 13};
+        int sum = Arrays.stream(numbers).sum();
     }
 
 
