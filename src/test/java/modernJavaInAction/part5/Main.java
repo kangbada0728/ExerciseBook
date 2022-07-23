@@ -4,9 +4,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.toList;
 
 public class Main {
 
@@ -162,7 +167,55 @@ public class Main {
                 .map(dish -> 1)
                 .reduce(0, (a, b) -> a + b);
         long count = menu.stream().count();
+    }
 
+    @Test
+    void test10() {
+
+        Trader raoul = new Trader("Raoul", "Cambridge");
+        Trader mario = new Trader("Mario", "Milan");
+        Trader alan = new Trader("Alan", "Cambridge");
+        Trader brian = new Trader("Brian", "Cambridge");
+
+        List<Transaction> transactions = Arrays.asList(
+                new Transaction(brian, 2011, 300),
+                new Transaction(raoul, 2012, 1000),
+                new Transaction(raoul, 2011, 400),
+                new Transaction(mario, 2012, 710),
+                new Transaction(mario, 2012, 700),
+                new Transaction(alan, 2012, 950)
+        );
+
+        List<Transaction> collect = transactions.stream()
+                .filter(t -> t.getYear() == 2011)
+                .sorted(comparing(t -> t.getTrader().getName()))
+                .collect(toList());
+
+        List<String> collect1 = transactions.stream()
+                .map(t -> t.getTrader().getCity())
+                .distinct()
+                .collect(toList());
+
+        List<Transaction> cambridge = transactions.stream()
+                .filter(t -> t.getTrader().getCity().equals("Cambridge"))
+                .sorted(comparing(t -> t.getTrader().getName()))
+                .collect(toList());
+
+        List<String> collect2 = transactions.stream()
+                .map(t -> t.getTrader().getName())
+                .sorted()
+                .collect(toList());
+
+        boolean milan = transactions.stream()
+                .anyMatch(t -> t.getTrader().getCity().equals("Milan"));
+
+        transactions.stream()
+                .filter(t -> t.getTrader().getCity().equals("Cambridge"))
+                .forEach(System.out::println);
+
+        transactions.stream()
+                .map(Transaction::getValue)
+                .reduce(Integer::max);
 
     }
 
