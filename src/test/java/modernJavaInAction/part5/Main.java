@@ -259,7 +259,12 @@ public class Main {
                         .filter(t -> t[2] % 1 == 0));
     }
 
-
+    @Test
+    void test14() {
+        Stream<String> stream = Stream.of("Modern ", "Java ", "In ", "Action");
+        stream.map(String::toUpperCase).forEach(System.out::println);
+        Stream<String> emptyStream = Stream.empty();
+    }
 
 
 
