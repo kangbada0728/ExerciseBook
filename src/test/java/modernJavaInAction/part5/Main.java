@@ -3,8 +3,10 @@ package modernJavaInAction.part5;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.OptionalInt;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -264,6 +266,12 @@ public class Main {
         Stream<String> stream = Stream.of("Modern ", "Java ", "In ", "Action");
         stream.map(String::toUpperCase).forEach(System.out::println);
         Stream<String> emptyStream = Stream.empty();
+
+        String homeValue = System.getProperty("home");
+        Stream<String> homeValueStream = homeValue == null ? Stream.empty() : Stream.of(homeValue);
+        Stream<String> homeValueStream1 = Stream.ofNullable(System.getProperty("home"));
+        Stream<String> values = Stream.of("config", "home", "user")
+                .flatMap(key -> Stream.ofNullable(System.getProperty(key)));
     }
 
 
