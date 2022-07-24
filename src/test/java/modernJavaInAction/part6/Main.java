@@ -1,6 +1,7 @@
 package modernJavaInAction.part6;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -26,6 +27,7 @@ public class Main {
     }
 
     @Test
+    @DisplayName("6.2 리듀싱과 요약")
     void test1() {
         Long howManyDishes = menu.stream().collect(Collectors.counting());
         long count = menu.stream().count();
@@ -45,7 +47,9 @@ public class Main {
         String shortMenu = menu.stream().map(Dish::getName).collect(Collectors.joining());
         String collect = menu.stream().map(Dish::getName).collect(Collectors.joining(", "));
 
-        
-
+        int collect1 = menu.stream().collect(Collectors.reducing(0, Dish::getCalories, (i, j) -> i + j));
+        int collect2 = menu.stream().collect(Collectors.reducing(0, Dish::getCalories, Integer::sum));
+        Long collect3 = menu.stream().collect(Collectors.reducing(0L, e -> 1L, Long::sum));
     }
+
 }
