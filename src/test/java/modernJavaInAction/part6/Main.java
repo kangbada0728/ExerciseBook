@@ -3,10 +3,7 @@ package modernJavaInAction.part6;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -36,6 +33,14 @@ public class Main {
         Comparator<Dish> dishCaloriesComparator = Comparator.comparingInt(Dish::getCalories);
         Optional<Dish> mostCalorieDish = menu.stream().collect(Collectors.maxBy(dishCaloriesComparator));
         Optional<Dish> max = menu.stream().max(dishCaloriesComparator);
+
+        int totalCalories = menu.stream().collect(Collectors.summingInt(Dish::getCalories));
+        int sum = menu.stream().mapToInt(Dish::getCalories).sum();
+
+        double avgCalories = menu.stream().collect(Collectors.averagingInt(Dish::getCalories));
+
+        IntSummaryStatistics menuStatistics = menu.stream().collect(Collectors.summarizingInt(Dish::getCalories));
+        System.out.println("menuStatistics = " + menuStatistics);
 
 
     }
