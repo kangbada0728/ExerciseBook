@@ -55,6 +55,15 @@ public class Main {
     @Test
     @DisplayName("6.3 그룹화")
     void test2() {
+        Map<Dish.Type, List<Dish>> dishesByType = menu.stream().collect(Collectors.groupingBy(Dish::getType));
+        Map<CaloricLevel, List<Dish>> collect = menu.stream().collect(Collectors.groupingBy(dish -> {
+            if (dish.getCalories() <= 400) return CaloricLevel.DIET;
+            else if (dish.getCalories() <= 700) return CaloricLevel.NORMAL;
+            else return CaloricLevel.FAT;
+        }));
+
+
 
     }
+
 }
