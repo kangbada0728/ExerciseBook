@@ -42,6 +42,10 @@ public class Main {
         IntSummaryStatistics menuStatistics = menu.stream().collect(Collectors.summarizingInt(Dish::getCalories));
         System.out.println("menuStatistics = " + menuStatistics);
 
+        String shortMenu = menu.stream().map(Dish::getName).collect(Collectors.joining());
+        String collect = menu.stream().map(Dish::getName).collect(Collectors.joining(", "));
+
+        
 
     }
 }
