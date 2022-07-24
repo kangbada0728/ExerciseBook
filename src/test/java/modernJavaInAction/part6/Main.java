@@ -52,4 +52,9 @@ public class Main {
         Long collect3 = menu.stream().collect(Collectors.reducing(0L, e -> 1L, Long::sum));
     }
 
+    @Test
+    @DisplayName("6.3 그룹화")
+    void test2() {
+
+    }
 }
