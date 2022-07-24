@@ -7,9 +7,12 @@ import org.junit.jupiter.api.Test;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.*;
+
 public class Main {
 
     List<Dish> menu;
+    Map<String, List<String>> dishTags = new HashMap<>();
 
     @BeforeEach
     void beforeEach() {
@@ -24,6 +27,16 @@ public class Main {
                 new Dish("prawns", false, 300, Dish.Type.FISH),
                 new Dish("salmon", false, 450, Dish.Type.FISH)
         );
+
+        dishTags.put("pork", Arrays.asList("greasy", "salty"));
+        dishTags.put("beef", Arrays.asList("salty", "roasted"));
+        dishTags.put("chicken", Arrays.asList("fried", "crisp"));
+        dishTags.put("french fries", Arrays.asList("greasy", "fried"));
+        dishTags.put("rice", Arrays.asList("light", "natural"));
+        dishTags.put("season fruit", Arrays.asList("fresh", "natural"));
+        dishTags.put("pizza", Arrays.asList("tasty", "salty"));
+        dishTags.put("prawns", Arrays.asList("tasty", "roasted"));
+        dishTags.put("salmon", Arrays.asList("delicious", "fresh"));
     }
 
     @Test
@@ -55,14 +68,29 @@ public class Main {
     @Test
     @DisplayName("6.3 그룹화")
     void test2() {
-        Map<Dish.Type, List<Dish>> dishesByType = menu.stream().collect(Collectors.groupingBy(Dish::getType));
-        Map<CaloricLevel, List<Dish>> collect = menu.stream().collect(Collectors.groupingBy(dish -> {
+        Map<Dish.Type, List<Dish>> dishesByType = menu.stream().collect(groupingBy(Dish::getType));
+        Map<CaloricLevel, List<Dish>> collect = menu.stream().collect(groupingBy(dish -> {
             if (dish.getCalories() <= 400) return CaloricLevel.DIET;
             else if (dish.getCalories() <= 700) return CaloricLevel.NORMAL;
             else return CaloricLevel.FAT;
         }));
 
+        Map<Dish.Type, List<Dish>> collect1 = menu.stream()
+                .filter(dish -> dish.getCalories() > 500)
+                .collect(groupingBy(Dish::getType));
+        Map<Dish.Type, List<Dish>> collect2 = menu.stream()
+                .collect(groupingBy(Dish::getType, filtering(dish -> dish.getCalories() > 500, toList())));
 
+        Map<Dish.Type, List<String>> dishNamesByType = menu.stream()
+                .collect(groupingBy(Dish::getType, mapping(Dish::getName, toList())));
+
+        Map<Dish.Type, Set<String>> dishNamesByType2 = menu.stream()
+                .collect(groupingBy(Dish::getType, flatMapping(dish -> dishTags.get(dish.getName()).stream(), toSet())));
+
+        Map<Dish.Type, Set<String>> collect3 = menu.stream()
+                .collect(groupingBy(Dish::getType,
+                        flatMapping(dish -> dishTags.get(dish.getName()).stream(),
+                                toSet())));
 
     }
 
