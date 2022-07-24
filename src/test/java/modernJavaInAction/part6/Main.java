@@ -4,7 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -30,6 +32,10 @@ public class Main {
     void test1() {
         Long howManyDishes = menu.stream().collect(Collectors.counting());
         long count = menu.stream().count();
+
+        Comparator<Dish> dishCaloriesComparator = Comparator.comparingInt(Dish::getCalories);
+        Optional<Dish> mostCalorieDish = menu.stream().collect(Collectors.maxBy(dishCaloriesComparator));
+        Optional<Dish> max = menu.stream().max(dishCaloriesComparator);
 
 
     }
