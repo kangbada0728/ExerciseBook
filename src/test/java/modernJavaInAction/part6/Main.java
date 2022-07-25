@@ -87,10 +87,19 @@ public class Main {
         Map<Dish.Type, Set<String>> dishNamesByType2 = menu.stream()
                 .collect(groupingBy(Dish::getType, flatMapping(dish -> dishTags.get(dish.getName()).stream(), toSet())));
 
-        Map<Dish.Type, Set<String>> collect3 = menu.stream()
+        Map<Dish.Type, Map<CaloricLevel, List<Dish>>> dishesByTypeCaloricLevel = menu.stream()
                 .collect(groupingBy(Dish::getType,
-                        flatMapping(dish -> dishTags.get(dish.getName()).stream(),
-                                toSet())));
+                        groupingBy(dish -> {
+                            if (dish.getCalories() <= 400)
+                                return CaloricLevel.DIET;
+                            else if (dish.getCalories() <= 700)
+                                return CaloricLevel.NORMAL;
+                            else
+                                return CaloricLevel.FAT;
+                        })));
+
+
+
 
     }
 
