@@ -119,7 +119,36 @@ public class Main {
                 }, toCollection(HashSet::new)))
         );
 
+    }
+
+    @Test
+    @DisplayName("6.4 분할")
+    void test3() {
+
+        Map<Boolean, List<Dish>> partitionedMenu = menu.stream().collect(partitioningBy(Dish::isVegetarian));
+        List<Dish> vegetarianDishes = partitionedMenu.get(true);
+        Map<Boolean, Map<Dish.Type, List<Dish>>> vegetarianDishesByType =
+                menu.stream().collect(partitioningBy(Dish::isVegetarian, groupingBy(Dish::getType)));
+        Map<Boolean, Dish> mostCaloricPartitionedByVegetarian = menu.stream()
+                .collect(partitioningBy(Dish::isVegetarian, collectingAndThen(maxBy(comparingInt(Dish::getCalories)), Optional::get)));
+        Map<Boolean, Map<Boolean, List<Dish>>> collect =
+                menu.stream().collect(partitioningBy(Dish::isVegetarian, partitioningBy(d -> d.getCalories() > 500)));
+        Map<Boolean, Long> collect1 = menu.stream().collect(partitioningBy(Dish::isVegetarian, counting()));
+
+
+
 
     }
+
+
+
+
+
+
+
+
+
+
+
 
 }
