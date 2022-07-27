@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static java.util.Comparator.comparingInt;
 import static java.util.stream.Collectors.*;
@@ -140,7 +141,18 @@ public class Main {
 
     }
 
+    public Map<Boolean, List<Integer>> partitionPrimes(int n) {
+        return IntStream.rangeClosed(2, n).boxed().collect(partitioningBy(this::isPrime));
+    }
 
+    public boolean isPrime(int candidate) {
+        return IntStream.range(2, candidate).noneMatch(i -> candidate % i == 0);
+    }
+
+    public boolean isPrime2(int candidate) {
+        int candidateRoot = (int) Math.sqrt((double) candidate);
+        return IntStream.rangeClosed(2, candidateRoot).noneMatch(i -> candidate % i == 0);
+    }
 
 
 
