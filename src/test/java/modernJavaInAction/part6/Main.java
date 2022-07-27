@@ -135,10 +135,6 @@ public class Main {
         Map<Boolean, Map<Boolean, List<Dish>>> collect =
                 menu.stream().collect(partitioningBy(Dish::isVegetarian, partitioningBy(d -> d.getCalories() > 500)));
         Map<Boolean, Long> collect1 = menu.stream().collect(partitioningBy(Dish::isVegetarian, counting()));
-
-
-
-
     }
 
     public Map<Boolean, List<Integer>> partitionPrimes(int n) {
@@ -154,13 +150,10 @@ public class Main {
         return IntStream.rangeClosed(2, candidateRoot).noneMatch(i -> candidate % i == 0);
     }
 
-
-
-
-
-
-
-
-
+    @Test
+    @DisplayName("6.5 Collector 인터페이스")
+    void test4() {
+        // 생략
+    }
 
 }
